@@ -1,0 +1,165 @@
+import streamlit as st # type: ignore
+class Usuario:
+    def __init__(self, nome, idade, peso, altura, nivel_experiencia, objetivos):
+        self.nome = nome
+        self.idade = idade
+        self.peso = peso
+        self.altura = altura
+        self.nivel_experiencia = nivel_experiencia  # iniciante, intermediário, avançado
+        self.objetivos = objetivos  # hipertrofia, emagrecimento, força, resistência
+        self.medidas_corporais = {}
+        self.fotos = []
+        self.pesos_maximos = {}
+        self.historico_treinos = []
+
+    def cadastrar_usuario(self):
+        # Lógica para cadastrar o usuário no banco de dados
+        pass
+
+    def atualizar_dados(self, nome=None, idade=None, peso=None, altura=None, nivel_experiencia=None, objetivos=None):
+        if nome: self.nome = nome
+        if idade: self.idade = idade
+        if peso: self.peso = peso
+        if altura: self.altura = altura
+        if nivel_experiencia: self.nivel_experiencia = nivel_experiencia
+        if objetivos: self.objetivos = objetivos
+
+    def calcular_imc(self):
+        if self.altura == 0:
+            raise ValueError("Altura não pode ser zero.")
+        return self.peso / (self.altura ** 2)
+
+    def definir_objetivos(self, objetivos):
+        self.objetivos = objetivos
+
+    def visualizar_progresso(self):
+        # Lógica para visualizar o progresso do usuário
+        pass
+
+    def atualizar_medidas(self, parte_corpo, medida):
+        self.medidas_corporais[parte_corpo] = medida
+
+    def adicionar_foto(self, foto_url):
+        self.fotos.append(foto_url)
+
+    def registrar_novo_recorde(self, exercicio, peso_maximo):
+        self.pesos_maximos[exercicio] = peso_maximo
+
+    def visualizar_grafico_evolucao(self):
+        # Lógica para gerar gráficos de evolução
+        pass
+
+    def exportar_dados(self):
+        # Lógica para exportar dados do usuário
+        pass
+
+class Exercicio:
+    def __init__(self, nome, grupo_muscular, equipamento_necessario, descricao, nivel_dificuldade, demonstracao_video_url):
+        self.nome = nome
+        self.grupo_muscular = grupo_muscular  # peito, costas, pernas, etc.
+        self.equipamento_necessario = equipamento_necessario
+        self.descricao = descricao
+        self.nivel_dificuldade = nivel_dificuldade
+        self.demonstracao_video_url = demonstracao_video_url
+
+    def mostrar_detalhes(self):
+        # Lógica para mostrar detalhes do exercício
+        pass
+
+    def mostrar_demonstracao(self):
+        # Lógica para mostrar vídeo de demonstração
+        pass
+
+    def registrar_como_favorito(self):
+        # Lógica para registrar exercício como favorito
+        pass
+
+class Treino:
+    def __init__(self, nome, exercicios, duracao_estimada, nivel_dificuldade, objetivo, frequencia_semanal):
+        self.nome = nome
+        self.exercicios = exercicios  # lista de objetos da classe Exercicio
+        self.duracao_estimada = duracao_estimada
+        self.nivel_dificuldade = nivel_dificuldade
+        self.objetivo = objetivo  # hipertrofia, emagrecimento, força
+        self.frequencia_semanal = frequencia_semanal
+
+    def adicionar_exercicio(self, exercicio):
+        self.exercicios.append(exercicio)
+
+    def remover_exercicio(self, exercicio):
+        self.exercicios.remove(exercicio)
+
+    def modificar_repeticoes(self, exercicio, repeticoes):
+        for ex in self.exercicios:
+            if ex['nome'] == exercicio:
+                ex['repeticoes'] = repeticoes
+
+    def modificar_series(self, exercicio, series):
+        for ex in self.exercicios:
+            if ex['nome'] == exercicio:
+                ex['series'] = series
+
+    def calcular_volume_total(self):
+        # Lógica para calcular o volume total do treino
+        pass
+
+    def gerar_pdf(self):
+        # Lógica para gerar PDF do treino
+        pass
+
+class RegistroTreino:
+    def __init__(self, usuario, treino, data_hora, exercicios_realizados, duracao_real, sensacao_pos_treino):
+        self.usuario = usuario
+        self.treino = treino
+        self.data_hora = data_hora
+        self.exercicios_realizados = exercicios_realizados  # lista de exercícios com peso, séries e repetições
+        self.duracao_real = duracao_real
+        self.sensacao_pos_treino = sensacao_pos_treino  # 1-10
+
+    def iniciar_treino(self):
+        # Lógica para iniciar o treino
+        pass
+
+    def registrar_serie(self, exercicio, peso, repeticoes):
+        # Lógica para registrar série do exercício
+        self.exercicios_realizados.append({
+            'exercicio': exercicio,
+            'peso': peso,
+            'repeticoes': repeticoes
+        })
+
+    def finalizar_treino(self):
+        # Lógica para finalizar o treino
+        pass
+
+    def salvar_estatisticas(self):
+        # Lógica para salvar estatísticas do treino
+        pass
+
+    def adicionar_observacoes(self, observacoes):
+        self.observacoes = observacoes
+
+class Progresso:
+    def __init__(self, usuario, medidas_corporais, fotos, pesos_maximos, historico_treinos):
+        self.usuario = usuario
+        self.medidas_corporais = medidas_corporais  # dicionário com partes do corpo e medidas
+        self.fotos = fotos  # antes/depois
+        self.pesos_maximos = pesos_maximos  # dicionário de exercícios e pesos máximos
+        self.historico_treinos = historico_treinos  # lista de RegistroTreino
+
+    def atualizar_medidas(self, parte_corpo, medida):
+        self.medidas_corporais[parte_corpo] = medida
+
+    def adicionar_foto(self, foto_url):
+        self.fotos.append(foto_url)
+
+    def registrar_novo_recorde(self, exercicio, peso_maximo):
+        self.pesos_maximos[exercicio] = peso_maximo
+
+    def visualizar_grafico_evolucao(self):
+        # Lógica para gerar gráficos de evolução
+        pass
+
+    def exportar_dados(self):
+        # Lógica para exportar dados do usuário
+        pass
